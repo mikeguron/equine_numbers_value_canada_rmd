@@ -3,6 +3,7 @@ title: "Historical horse population in Canada"
 output: 
   html_document:
     toc: TRUE
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +35,7 @@ Horse population data were sourced from the [Government of Canada's Open Data we
 
 ## Methods
 
-The R programming language and the following R packages were used to perform the analysis: knitr and tidyverse. The code used to perform the analysis and create this report can be found here: https://github.com/ttimbers/equine_numbers_value_canada_rmd.
+The R programming language and the following R packages were used to perform the analysis: knitr and tidyverse [@tidy]. The code used to perform the analysis and create this report can be found here: https://github.com/ttimbers/equine_numbers_value_canada_rmd.
 
 
 ## Results
@@ -71,7 +72,7 @@ knitr::kable(max_horses, caption = "Table 1. Horse Population in Canada") |>
 
 Below we zoom in and look at the province of Alberta:
 
-```{r plot province, fig.width=5, fig.height=4, fig.cap="Figure 2. Provinces", fig.align='center'}
+```{r plot province, fig.align='center', fig.cap="Figure 2. Provinces", fig.height=4, fig.width=5, warning=FALSE}
 province_plot <- horse_pop %>% 
   filter(GEO == "Alberta") %>% 
   ggplot(aes(x = Ref_Date, y = Value)) +
@@ -84,4 +85,19 @@ province_plot <- horse_pop %>%
   scale_y_continuous(labels = scales::comma) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 province_plot
+
+# ggsave("province_plot.png")
 ```
+
+
+## reading an existing plot
+
+```{r out.height="100px", out.width="100px"}
+
+knitr::include_graphics("province_plot.png")
+
+```
+
+## References
+
+
